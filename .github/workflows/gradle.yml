@@ -74,7 +74,7 @@ jobs:
       id: getVer
       run: echo "::set-output name=version::$(./gradlew properties -q | grep '^version:' | awk '{print $2}')"
     
-  Release:
+  publish:
     needs: Assemble
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
