@@ -73,3 +73,18 @@ jobs:
     - name: Output Version
       id: getVer
       run: echo "::set-output name=version::$(./gradlew properties -q | grep '^version:' | awk '{print $2}')"
+    
+  Release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: Assemble
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/download-artifact@v2
+          name: buildJar
+        - name: Release
+          uses: softprops/action-gh-release@v1
+          with:
+            files: buildJar/st_nycu_lab4-${{needs.Assemble.outputs.version}}.jar
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
