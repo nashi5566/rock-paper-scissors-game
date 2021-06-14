@@ -30,7 +30,7 @@ jobs:
   Test:
     needs: Compile
 
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
