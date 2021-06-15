@@ -55,7 +55,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: testReport
-        path: build/reports
+        path: build/reports/tests/test
         
   Assemble:
     needs: Test
@@ -87,7 +87,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: buildJar
-        path: build/libs/Lab 4-*.jar
+        path: build/libs/st_0866003_nycu_lab4-*.jar
     - name: Output Version
       id: getVer
       run: echo "::set-output name=version::$(./gradlew properties -q | grep '^version:' | awk '{print $2}')"
