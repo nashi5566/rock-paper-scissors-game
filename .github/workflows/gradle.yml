@@ -92,16 +92,16 @@ jobs:
       id: getVer
       run: echo "::set-output name=version::$(./gradlew properties -q | grep '^version:' | awk '{print $2}')"
     
-  publish:
+  Release:
     needs: Assemble
-    if: startsWith(github.ref, 'refs/tags/')
-    runs-on: ubuntu-latest
+       runs-on: ubuntu-latest
 
     steps:
         - uses: actions/download-artifact@v2
           name: buildJar
-        - name: Release
+        - name: publish
           uses: softprops/action-gh-release@v1
+          if: startsWith(github.ref, 'refs/tags/')
           with:
             files: buildJar/st_nycu_lab4-${{needs.Assemble.outputs.version}}.jar
           env:
