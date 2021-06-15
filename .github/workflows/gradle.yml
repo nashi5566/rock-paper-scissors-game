@@ -94,7 +94,7 @@ jobs:
     
   Release:
     needs: Assemble
-       runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
         - uses: actions/download-artifact@v2
